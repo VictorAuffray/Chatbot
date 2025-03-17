@@ -78,6 +78,7 @@ async function createTables() {
   } finally {
     await knex.destroy();
   }
+  process.exe
 }
 
 createTables();
