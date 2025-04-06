@@ -12,21 +12,24 @@ async function createTables() {
 
     await knex.schema.createTable('CONTRAT', table => {
       table.increments('Contrat_id').primary();
-      table.string('Type_contrat');
-      table.integer('Date_debut');
-      table.integer('Date_fin');
-    });
+      table.integer('Entreprise_id').unsigned().references('entreprise_id').inTable('ENTREPRISE').onDelete('CASCADE');
+      table.integer('Actionnaire_id').unsigned().references('Actionnaire_id').inTable('ACTIONNAIRE').onDelete('CASCADE');
+      table.date('Date_contrat').notNullable();
+      table.string('Status'); 
+      table.float('Pourcentage'); 
+  });
+  
+  
+  await knex.schema.createTable('CONTRAT_ACTIONNAIRE', table => {
+    table.increments('Contrat_id').primary(); // Identifiant du contrat
+    table.integer('Entreprise_id').references('entreprise_id').inTable('ENTREPRISE').notNullable(); // Référence à l'entreprise
+    table.integer('Actionnaire_id').references('Actionnaire_id').inTable('ACTIONNAIRE').notNullable(); // Référence à l'actionnaire
+    table.float('Pourcentage').notNullable(); // Pourcentage de l'actionnaire dans le contrat
+    table.date('Date_contrat').notNullable(); // Date de signature du contrat
+});
 
-    await knex.schema.createTable('EMPLOYE', table => {
-      table.increments('Employe_id').primary();
-      table.string('Nom');
-      table.string('Prenom');
-      table.integer('Date_naissance');
-      table.integer('Nombre_employe');
-      table.string('Statut');
-      table.integer('Salaire');
-      table.integer('Contrat_id').references('Contrat_id').inTable('CONTRAT');
-    });
+
+
 
     await knex.schema.createTable('PARTENAIRE', table => {
       table.increments('Partenaire_id').primary();
@@ -36,7 +39,7 @@ async function createTables() {
     });
 
     await knex.schema.createTable('ENTREPRISE', table => {
-      table.increments('Entreprise_id').primary();
+      table.increments('entreprise_id').primary();
       table.string('Nom');
       table.string('Siege_social');
       table.integer('Date_creation');
@@ -50,8 +53,14 @@ async function createTables() {
       table.string('Telephone');
     });
 
+    await knex.schema.createTable('ACTIONNAIRE', table => {
+      table.increments('actionnaire_id').primary();
+      table.string('Nom').notNullable();
+  });
+
     await knex.schema.createTable('ACTIONNAIRE_ENTREPRISE', table => {
       table.increments('Actionnaire_id').primary();
+      table.string('Actionnaire_nom'); 
       table.integer('Entreprise_id').references('Entreprise_id').inTable('ENTREPRISE');
       table.decimal('Pourcentage', 5, 2);
     });
@@ -68,7 +77,10 @@ async function createTables() {
       table.integer('Date_debut');
       table.integer('Date_fin');
     });
+    
 
+
+    
     console.log('Toutes les tables ont été créées avec succès.');
   }
     else{
@@ -78,7 +90,6 @@ async function createTables() {
   } finally {
     await knex.destroy();
   }
-  process.exe
 }
 
 createTables();
