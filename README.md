@@ -30,7 +30,7 @@ Avant de commencer, assurez-vous d'avoir installé les éléments suivants :
 - Une base de données configurée (par exemple, SQLite, PostgreSQL)
 
 ## Utilisation
-**Étape 1 : Lancez le fichier migrate.js avec la commande suivante : node migrate.js
+Étape 1 : Lancez le fichier migrate.js avec la commande suivante : node migrate.js
 **Étape 2 : Lancez le fichier save.js pour créer des entreprises témoins : node save.js
 **Étape 3 : Lancez le fichier limdu.js avec la commande suivante : limdu.js
 
