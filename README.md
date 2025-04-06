@@ -4,21 +4,10 @@ Ce projet est un chatbot conçu pour gérer des informations relatives à des en
 
 ## Fonctionnalités
 
-- **Création d'entreprises** : Ajoutez de nouvelles entreprises à la base de données avec des détails tels que :
-  - Siège social
-  - Date de création
-  - Chiffre d'affaires
-  - Statut juridique
-  - Secteur d'activité
-  - Nombre d'employés
-  - Email et téléphone
-
+- **Création d'entreprises** : Ajoutez de nouvelles entreprises à la base de données.
 - **Modification d'entreprises** : Modifiez les détails d'une entreprise existante.
-
-- **Affichage des entreprises** : Affichez les fiches détaillées de toutes les entreprises enregistrées.
-
-- **Gestion des actionnaires** : Ajoutez ou retirez des actionnaires d'une entreprise et affichez les contrats associés.
-
+- **Ajout et retrait d'actionnaires** : Gérez les actionnaires d'une entreprise.
+- **Affichage des entreprises et des actionnaires** : Visualisez les fiches d'entreprises et les contrats d'actionnaires associés.
 - **Interface utilisateur simple** : Menu basé sur la console pour une utilisation intuitive.
 
 ## Prérequis
